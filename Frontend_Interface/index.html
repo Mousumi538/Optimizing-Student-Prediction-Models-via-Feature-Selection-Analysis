@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Performance Analysis</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/4128/4128176.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.4.1/core.css">
+  <script type="module" src="https://pyscript.net/releases/2024.4.1/core.js"></script>
+</head>
+<body>
+
+    <div class="topnav">
+        <img src="https://cdn-icons-png.flaticon.com/512/4128/4128176.png" alt="" height="30px" style="margin-right: 5px;">
+       <span style="position: relative; top:5px;">Student <span style="color: gold;">Performance</span> <span style="color: red;">Analysis </span></span>
+    </div>
+
+<div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <img src="https://static.vecteezy.com/system/resources/previews/028/754/338/original/graduate-student-3d-icon-illustration-png.png">        
+        <a href="#top">Basic Details</a>
+        <a href="#Academic">Academic Performance</a>
+        <a href="#Essential">Essential Details</a>
+        <a href="#Personal" class="otheroptiond">Personal Information</a>
+        <a href="#Family" class="otheroptiond">Family Background</a>
+        <a href="#StudyHabits" class="otheroptiond">Study Habits</a>
+        <a href="#SchoolPreferences" class="otheroptiond">School Preferences</a>
+        <a href="#SocialLife" class="otheroptiond">Social Life</a>
+
+</div>
+
+<span id="nav_btn" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+<div class="container mt-5 form-container" id="maindiv">
+    <div class="subform" id="Basic">
+        <h2 class="mb-4">Basic Details</h2>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter name">
+          </div>
+          <div class="form-group">
+            <table class="table">
+                <thead> <tr> <th>Parameter</th> <th>Details</th> </tr> </thead>
+                <tbody>
+                  <tr> 
+                    <td>Size of form</td>
+                    <td>
+                      <input type="checkbox" id="formsize" name="formsize" value="" onclick="formsizeCheck()" checked>
+                      <label for="formsize"> Fill only essential fifteen parameters</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Classification type</td>
+                    <td>
+                        <select id="classificationType" class="form-control" aria-label="Select">
+                            <option selected value="0">Binary&nbsp; ( Output - Pass or Fail ) - Adaboost</option>
+                            <option value="1">5-Level ( Output - Between grade A to F ) - Random Forest</option>
+                            <option value="2">Default ( Output - Percentage ) - Random Forest</option>
+                        </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+
+    <div id="Academic" class="subform"><br><br>
+      <h2 class="mb-4">Academic Performance</h2>
+      <div class="form-group">
+          <table class="table">
+              <thead> <tr> <th>Parameter</th> <th>Details</th> </tr> </thead>
+              <tbody>
+                <tr> 
+                  <td>First period grade (from 0 to 20)</td>
+                  <td><input type="number" class="form-control" placeholder="Enter marks" id="G1" min="0" max="20"></td>
+                </tr>
+                <tr>
+                  <td>Second period grade (from 0 to 20)</td>
+                  <td><input type="number" class="form-control" placeholder="Enter marks" id="G2" min="0" max="20"></td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+  </div>
+
+  <div id="Essential" class="subform"><br><br>
+    <h2 class="mb-4">Essential Details</h2>
+    <div class="form-group">
+        <table class="table">
+            <thead> <tr> <th>Parameter</th> <th>Details</th> </tr> </thead>
+            <tbody>
+              <tr> 
+                <td>Student's age (15 to 22) </td>
+                <td><input type="number" class="form-control" placeholder="Enter age" id="age" min="15" max="22"></td>
+              </tr>
+              <tr> 
+                <td>Number of school absences (From 0 to 93)</td>
+                <td><input type="number" class="form-control" placeholder="Enter Absensce %" id="absences" min="0" max="93"></td>
+              </tr>
+              <tr>
+                <td>Number of past class failures</td>
+                <td><input type="number" class="form-control" placeholder="If none press 0" id="failures" min="0"></td>
+              </tr>
+              <tr> 
+                <td>Going out with friends</td>
+                <td>
+                    <select class="form-control" aria-label="Select" id="goout">
+                          <option selected value="1">Very low</option>
+                          <option value="2">Low</option>
+                          <option value="3">Average</option>
+                          <option value="4">High</option>
+                          <option value="5">Very high</option>
+                      </select>
+                  </td>
+              </tr>
+              <tr> 
+                <td>Current health status</td>
+                <td>
+                    <select class="form-control" aria-label="Select" id="health">
+                          <option selected value="1">Very bad</option>
+                          <option value="2">Bad</option>
+                          <option value="3">Average</option>
+                          <option value="4">Good</option>
+                          <option value="5">Very good</option>
+                      </select>
+                  </td>
+              </tr>
+              <tr>
+                <td>Father's education</td>
+                <td>
+                    <select class="form-control" aria-label="Select" id="Fedu">
+                          <option selected value="0">None</option>
+                          <option value="1">Primary education (4th grade)</option>
+                          <option value="2">5th to 9th grade</option>
+                          <option value="3">Secondary education</option>
+                          <option value="4">Higher education</option>
+                      </select>
+                  </td>
+              </tr>
+              <tr>
+                <td>Father's job</td>
+                <td>
+                    <select class="form-control" aria-label="Select" id="Fjob">
+                          <option selected value="0">Teacher</option>
+                          <option value="3">Health care related</option>
+                          <option value="2">Civil services</option>
+                          <option value="4">Home Maker</option>
+                          <option value="1">Others</option>
+                      </select>
+                  </td>
+              </tr>
+              <tr> 
+                <td>Weekend alcohol consumption</td>
+                <td>
+                    <select class="form-control" aria-label="Select" id="Walc">
+                          <option selected value="1">Very low</option>
+                          <option value="2">Low</option>
+                          <option value="3">Average</option>
+                          <option value="4">High</option>
+                          <option value="5">Very high</option>
+                      </select>
+                  </td>
+              </tr>
+              <tr>
+                <td>Free time after school</td>
+                <td>
+                    <select class="form-control" aria-label="Select" id="freetime">
+                          <option selected value="1">Very low</option>
+                          <option value="2">Low</option>
+                          <option value="3">Average</option>
+                          <option value="4">High</option>
+                          <option value="5">Very high</option>
+                      </select>
+                  </td>
+              </tr>
+              <tr>
+                <td>Mother's job</td>
+                <td>
+                    <select class="form-control" aria-label="Select" id="Mjob">
+                          <option selected value="4">Teacher</option>
+                          <option value="1">Health care related</option>
+                          <option value="3">Civil services</option>
+                          <option value="0">Home Maker</option>
+                          <option value="2">Others</option>
+                      </select>
+                  </td>
+              </tr>
+              <tr> 
+                <td>Reason to choose this school</td>
+                <td>
+                    <select class="form-control" aria-label="Select Address Type" id="reason">
+                        <option selected value="2">Close to home</option>
+                        <option value="3">School's reputation</option>
+                        <option selected value="0">Course preference</option>
+                        <option value="1">Other</option>
+                    </select>
+                </td>
+              </tr>
+              <tr> 
+                <td>Mother's education</td>
+                <td>
+                    <select class="form-control" aria-label="Select" id="Medu">
+                          <option selected value="0">None</option>
+                          <option value="1">Primary education (4th grade)</option>
+                          <option value="2">5th to 9th grade</option>
+                          <option value="3">Secondary education</option>
+                          <option value="4">Higher education</option>
+                      </select>
+                  </td>
+              </tr>
+              <tr> 
+                <td>Quality of family relationships</td>
+                <td>
+                  <select class="form-control" aria-label="Select" id="famrel">
+                        <option selected value="1">Very bad</option>
+                        <option value="2">Bad</option>
+                        <option value="3">Good</option>
+                        <option value="4">Very good</option>
+                        <option value="5">Excelent</option>
+                    </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+
+<div id="Personal" class="subform otheroptiond"><br><br>
+        <h2 class="mb-4">Personal Information</h2>
+        <div class="form-group">
+            <table class="table">
+                <thead> <tr> <th>Parameter</th> <th>Details</th> </tr> </thead>
+                <tbody>
+                  <tr> 
+                    <td>Student's school</td>
+                      <td>
+                        <select id="school" class="form-control" aria-label="Select">
+                            <option selected value="0">GP School</option>
+                            <option value="1">MS School</option>
+                        </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Student's sex</td>
+                    <td>
+                        <select id="sex" class="form-control" aria-label="Select gender">
+                            <option selected value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                    </td>
+                  </tr>
+
+                  <tr> 
+                    <td>Student's home address type</td>
+                    <td>
+                        <select class="form-control" aria-label="Select Address Type" id="address">
+                            <option selected value="0">Urban</option>
+                            <option value="1">Rural</option>
+                        </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+
+    <div id="Family" class="subform otheroptiond"><br><br>
+        <h2 class="mb-4">Family Background</h2>
+        <div class="form-group">
+            <table class="table">
+                <thead> <tr> <th>Parameter</th> <th>Details</th> </tr> </thead>
+                <tbody>
+                  <tr> 
+                    <td>Family size</td>
+                    <td>
+                        <select class="form-control" aria-label="Select" id="famsize">
+                              <option selected value="1">Less or equal to 3</option>
+                              <option value="0">Greater than 3</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>Parent's cohabitation status</td>
+                    <td>
+                        <select class="form-control" aria-label="Select" id="Pstatus">
+                              <option selected value="1">Living together</option>
+                              <option value="0">Apart</option>
+                          </select>
+                      </td>
+                  </tr> 
+                  <tr>
+                    <td>Student's guardian</td>
+                    <td>
+                        <select class="form-control" aria-label="Select" id="guardian">
+                              <option selected value="0">Mother</option>
+                              <option value="1">Father</option>
+                              <option value="2">Other</option>
+                          </select>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+
+    <div id="StudyHabits" class="subform otheroptiond"><br><br>
+      <h2 class="mb-4">Commute and Study Habits</h2>
+      <div class="form-group">
+          <table class="table">
+              <thead> <tr> <th>Parameter</th> <th>Details</th> </tr> </thead>
+              <tbody>
+                <tr> 
+                  <td>Home to school travel time</td>
+                  <td>
+                    <select class="form-control" aria-label="Select" id="traveltime">
+                          <option selected value="1">Less than 15 min</option>
+                          <option value="2">15 to 30 min</option>
+                          <option value="3">30 min to 1 hour</option>
+                          <option value="4">Greater than 1 hour</option>
+                      </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Weekly study time</td>
+                  <td>
+                      <select class="form-control" aria-label="Select" id="studytime">
+                            <option selected value="1">Less than 2 hours</option>
+                            <option value="2">2 to 5 hours</option>
+                            <option value="3">5 to 10 hours</option>
+                            <option value="4">Greater than 10 hours</option>
+                        </select>
+                    </td>
+                </tr>
+                
+                <tr>
+                  <td>Extra educational support from school</td>
+                  <td>
+                      <select class="form-control" aria-label="Select" id="schoolsup">
+                            <option selected value="0">Yes</option>
+                            <option value="1">No</option>
+                            <option value="NA" hidden>Not applicable</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                  <td>Family educational support</td>
+                  <td>
+                      <select class="form-control" aria-label="Select" id="famsup">
+                            <option selected value="1">Yes</option>
+                            <option value="0">No</option>
+                            <option value="NA" hidden>Not applicable</option
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                  <td>Extra paid classes within the course subject (Math or Portuguese)</td>
+                  <td>
+                      <select class="form-control" aria-label="Select" id="paid">
+                            <option selected value="1">Yes</option>
+                            <option value="0">No</option>
+                            <option value="NA" hidden>Not applicable</option
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                  <td>Extra-curricular activities</td>
+                  <td>
+                      <select class="form-control" aria-label="Select" id="activities">
+                            <option selected value="1">Yes</option>
+                            <option value="0">No</option>
+                            <option value="NA" hidden>Not applicable</option
+                        </select>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+  </div>
+
+    <div id="SchoolPreferences" class="subform otheroptiond"><br><br>
+        <h2 class="mb-4">School Preferences</h2>
+        <div class="form-group">
+            <table class="table">
+                <thead> <tr> <th>Parameter</th> <th>Details</th> </tr> </thead>
+                <tbody>
+                    <tr> 
+                        <td>Attended nursery school</td>
+                        <td>
+                            <select class="form-control" aria-label="Select Address Type" id="nursery">
+                                <option selected value="0">Yes</option>
+                                <option value="1">No</option>
+                            </select>
+                        </td>
+                      </tr>
+                      <tr> 
+                        <td>Wants to take higher education</td>
+                        <td>
+                            <select class="form-control" aria-label="Select Address Type" id="higher">
+                                <option selected value="0">Yes</option>
+                                <option value="1">No</option>
+                            </select>
+                        </td>
+                      </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+
+
+    <div id="SocialLife" class="subform otheroptiond"><br><br>
+        <h2 class="mb-4">Social Life</h2>
+        <div class="form-group">
+            <table class="table">
+                <thead> <tr> <th>Parameter</th> <th>Details</th> </tr> </thead>
+                <tbody>
+                  <tr> 
+                    <td>Workday alcohol consumption</td>
+                    <td>
+                        <select class="form-control" aria-label="Select" id="Dalc">
+                              <option selected value="1">Very low</option>
+                              <option value="2">Low</option>
+                              <option value="3">Average</option>
+                              <option value="4">High</option>
+                              <option value="5">Very high</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr> 
+                    <td>With a romantic relationship</td>
+                    <td>
+                        <select class="form-control" aria-label="Select" id="romantic">
+                              <option selected value="1">Yes</option>
+                              <option value="0">No</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <tr> 
+                    <td>Internet access at home</td>
+                    <td>
+                        <select class="form-control" aria-label="Select" id="internet">
+                              <option selected value="1">Yes</option>
+                              <option value="0">No</option>
+                          </select>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+
+    <div class="subform">
+        <center><button py-click="predict_result" class="btn btn-primary">Predict Result</button></center>
+    </div>
+    <br><br>
+  <div id="predi" class="subform">
+    <h1 class="mb-4">Predicted Result</h1>
+    <div class="form-group">
+        <h3><div id="output"></div></h3>  
+    </div>
+</div>
+
+</div>
+
+<script>  
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("maindiv").style.left = "125px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("maindiv").style.left = "0";
+  }
+
+  function formsizeCheck() {
+    var elements = document.getElementsByClassName("otheroptiond");
+    if(document.getElementById('formsize').checked) {
+      for(i=0; i < elements.length;i++) {  elements[i].style.display = "none"; }
+    } else {
+      for(i=0; i < elements.length;i++) {  elements[i].style.display = "inherit"; }
+    }
+  }
+
+  var elementy = document.getElementsByClassName("otheroptiond");
+  for(i=0; i < elementy.length;i++) {  elementy[i].style.display = "none"; }
+</script>
+
+<script type='py' src='./main.py' config='./pyscript.json'></script>
+</body>
+</html>

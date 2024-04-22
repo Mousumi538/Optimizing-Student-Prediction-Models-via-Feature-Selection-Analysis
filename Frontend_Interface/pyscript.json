@@ -1,0 +1,4 @@
+{
+    "packages": ["pandas", "joblib", "scikit-learn", "numpy"],
+    "files": { "Models/Binary_Maths_adaboost_1.pkl" : "Binary_Maths_adaboost_1.pkl", "Models/5class_mat_rfr1.pkl" : "5class_mat_rfr1.pkl", "Models/pred_mat_rfr1.pkl" : "pred_mat_rfr1.pkl" }
+}
